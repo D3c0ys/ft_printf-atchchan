@@ -1,21 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_toupper.c                                       :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: atchchan <atchchan@student.42bangkok.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/26 16:54:23 by atchchan          #+#    #+#             */
-/*   Updated: 2026/08/26 17:17:24 by atchchan         ###   ########.fr       */
+/*   Created: 2026/10/23 00:38:24 by atchchan          #+#    #+#             */
+/*   Updated: 2026/10/23 00:52:31 by atchchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// 0x61 represents 'a'
-// 0x7A represents 'z'
+#include "ft_printf_utils.h"
 
-int	ft_toupper(int c)
+int	ft_putstr(char *s)
 {
-	if (0x61 <= c && c <= 0x7A)
-		c &= ~0x20;
-	return (c);
+	int	count;
+
+	count = 0;
+	while (*s)
+	{
+		write(1, s, 1);
+		count++;
+		s++;
+	}
+	return (count);
 }

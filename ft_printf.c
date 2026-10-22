@@ -6,52 +6,65 @@
 /*   By: atchchan <atchchan@student.42bangkok.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/22 23:48:43 by atchchan          #+#    #+#             */
-/*   Updated: 2026/10/22 23:58:58 by atchchan         ###   ########.fr       */
+/*   Updated: 2026/10/23 00:54:01 by atchchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static void	putformat(char c, va_list args)
+static int	putformat(char c, va_list args)
 {
+	int	count;
+	int	num;
+
+	count = 0;
 	if (c == 'c')
-		ft_putchar_fd(va_arg(args, int), 1);
+	{
+		num = va_arg(args, int);
+		count += write(1, &num, 1);
+	}
 	else if (c == 's')
-		ft_putstr_fd(va_arg(args, char *), 1);
+		count += ft_putstr(va_arg(args, char *));
 	else if (c == 'p')
-		ft_putptr(va_arg(args, void *));
+		count += ft_putptr(va_arg(args, void *));
 	else if (c == 'd' || c == 'i')
-		ft_putnbr_fd(va_arg(args, int), 1);
+		count += ft_putnbr(va_arg(args, int));
 	else if (c == 'u')
-		ft_putunbr((unsigned int)va_arg(args, int));
+		count += ft_putunbr((unsigned int)va_arg(args, int));
 	else if (c == 'x')
-		ft_puthex(va_arg(args, unsigned int), 0);
+		count += ft_puthex(va_arg(args, unsigned int), 0);
 	else if (c == 'X')
-		ft_puthex(va_arg(args, unsigned int), 1);
+		count += ft_puthex(va_arg(args, unsigned int), 1);
 	else if (c == '%')
-		ft_putchar_fd('%', 1);
+		count += write(1, "%", 1);
+	return (count);
 }
 
 int	ft_printf(const char *format, ...)
 {
 	va_list	args;
 	char	*p;
+	int		count;
 
+	count = 0;
 	p = (char *)format;
 	va_start(args, format);
 	while (*p)
 	{
 		if (*p == '%' && *(p + 1))
-			putformat(*(++p), args);
+			count += putformat(*(++p), args);
 		else
-			ft_putchar_fd(*p, 1);
+		{
+			write(1, p, 1);
+			count++;
+		}
 		p++;
 	}
 	va_end(args);
-	return (0);
+	return (count);
 }
 
-//int main(void)
+// int main(void)
 //{
 //	ft_printf("Hello ft");
 //}
