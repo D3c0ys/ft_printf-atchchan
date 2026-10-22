@@ -7,7 +7,7 @@ RM = rm -f
 SRCS = ft_printf.c
 
 UTILS_DIR = utils
-UTILS_SRCS = $(addprefix $(UTILS_DIR)/, ft_puthex.c ft_putptr.c ft_putunbr.c ft_putnbr.c ft_putstr.c)
+UTILS_SRCS = $(addprefix $(UTILS_DIR)/, ft_puthex.c ft_putptr.c ft_putunbr.c ft_putnbr.c ft_putstr.c ft_putchr.c)
 
 HEADERS = ft_printf.h $(UTILS_DIR)/ft_printf_utils.h
 

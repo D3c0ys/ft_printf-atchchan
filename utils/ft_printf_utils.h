@@ -6,7 +6,7 @@
 /*   By: atchchan <atchchan@student.42bangkok.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/22 23:58:09 by atchchan          #+#    #+#             */
-/*   Updated: 2026/10/23 00:54:53 by atchchan         ###   ########.fr       */
+/*   Updated: 2026/10/23 01:37:37 by atchchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,6 @@ int	ft_putptr(void *p);
 int	ft_putunbr(unsigned int n);
 int	ft_putnbr(int n);
 int	ft_putstr(char *s);
+int	ft_putchr(char c);
 
 #endif

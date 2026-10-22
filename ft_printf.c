@@ -6,7 +6,7 @@
 /*   By: atchchan <atchchan@student.42bangkok.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/22 23:48:43 by atchchan          #+#    #+#             */
-/*   Updated: 2026/10/23 00:54:01 by atchchan         ###   ########.fr       */
+/*   Updated: 2026/10/23 01:38:35 by atchchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,10 @@
 static int	putformat(char c, va_list args)
 {
 	int	count;
-	int	num;
 
 	count = 0;
 	if (c == 'c')
-	{
-		num = va_arg(args, int);
-		count += write(1, &num, 1);
-	}
+		count += ft_putchr(va_arg(args, int));
 	else if (c == 's')
 		count += ft_putstr(va_arg(args, char *));
 	else if (c == 'p')
@@ -37,6 +33,11 @@ static int	putformat(char c, va_list args)
 		count += ft_puthex(va_arg(args, unsigned int), 1);
 	else if (c == '%')
 		count += write(1, "%", 1);
+	else
+	{
+		count += write(1, "%", 1);
+		count += write(1, &c, 1);
+	}
 	return (count);
 }
 
@@ -63,8 +64,3 @@ int	ft_printf(const char *format, ...)
 	va_end(args);
 	return (count);
 }
-
-// int main(void)
-//{
-//	ft_printf("Hello ft");
-//}
