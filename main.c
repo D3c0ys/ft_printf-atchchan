@@ -31,7 +31,7 @@ static void	putformat(char c, va_list args)
 	else if (c == 's')
 		ft_putstr_fd(va_arg(args, char *), 1);
 	else if (c == 'p')
-		ft_putstr_fd("Unimplement", 1);
+		ft_putstr_fd(va_arg(args, char *), 1);
 	else if (c == 'd')
 		ft_putstr_fd("Unimplement", 1);
 	else if (c == 'i')
@@ -67,5 +67,7 @@ int	ft_printf(const char *format, ...)
 
 int	main(void)
 {
-	ft_printf("%s\n", "Hello ft");
+	char a[] = "Hello ft";
+	printf("%lu", (unsigned long)&a);
+	//ft_printf("%s %s\n", a, "42");
 }
